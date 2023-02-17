@@ -27,3 +27,11 @@ username: admin
 password: pass
 ```
 
+Finally, run all tests:
+```bash
+/mvnw
+```
+
+Resources
+---------
+* [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) 
