@@ -3,4 +3,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/kata
     username: admin
     password: pass
+  jpa:
+    generate-ddl: true
+    show-sql: true
 
