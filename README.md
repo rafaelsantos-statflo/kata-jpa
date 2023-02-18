@@ -32,6 +32,34 @@ Finally, run all tests:
 /mvnw
 ```
 
+
+Entity Diagram
+--------------
+
+```
+ ┌─|PUBLISHER|───┐
+ │id             │
+ │name           │
+ └────────────┬──┘
+              │@OneToMany
+              │
+              │
+ ┌─|BOOK|─────┴──┐@OneToOne           ┌─|ISBN|────────┐
+ │id             │────────────────────│id             │
+ │title          │@ManyToMany         │issuedAt       │
+ │subTitle       │────────────────┐   └───────────────┘
+ └───────────────┘                │
+              │ @ManyToMany       └──────────┐
+              │                              │ 
+              │                              │
+ ┌─|AUTHOR|───┴──┐             ┌─|CATEGORY|──┴─┐
+ │id             │             │id             │
+ │name           │             └───────────────┘           
+ └───────────────┘
+```
+
 Resources
 ---------
-* [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) 
+* [Jakarta Persistence Specification](https://jakarta.ee/specifications/persistence/3.1/jakarta-persistence-spec-3.1.html)
+* [Spring Boot Reference](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) 
+* [Spring Boot Data JPA Reference](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
