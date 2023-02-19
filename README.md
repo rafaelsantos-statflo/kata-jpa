@@ -37,25 +37,28 @@ Entity Diagram
 --------------
 
 ```
- ┌─|PUBLISHER|───┐
- │id             │
- │name           │
- └────────────┬──┘
-              │@OneToMany
-              │
-              │
- ┌─|BOOK|─────┴──┐@OneToOne           ┌─|ISBN|────────┐
- │id             │────────────────────│id             │
- │title          │@ManyToMany         │issuedAt       │
- │subTitle       │────────────────┐   └───────────────┘
- └───────────────┘                │
-              │ @ManyToMany       └──────────┐
-              │                              │ 
-              │                              │
- ┌─|AUTHOR|───┴──┐             ┌─|CATEGORY|──┴─┐
- │id             │             │id             │
- │name           │             └───────────────┘           
- └───────────────┘
+                               ┌─|PRODUCT|─────┐
+                               │id             │
+                               │name           │
+                               └─────────────┬─┘
+                                             │{OneToMany}
+                                             │
+                                             │
+┌─|CATEGORY|────┐              ┌─|VARIANT|───┴─┐              ┌─|LOCATION|────┐
+│name           │ {ManyToMany} │id             │ {ManyToMany} │id             │
+│               ├──────────────┤               ├──────────────┤name           │
+└───────────────┘              └─────────────┬─┘              └─────────────┬─┘
+                                             │{OneToMany}                   │{OneToOne}
+                                             │                              │
+                                             │                              │
+                               ┌─|ATTRIBUTE|─┴─┐              ┌─|ADDRESS|───┴─┐
+                               │key            │              │id             │
+                               │value          │              │lineOne        │
+                               └───────────────┘              │lineTwo        │
+                                                              │postalCode     │
+                                                              │country        │
+                                                              │city           │
+                                                              └───────────────┘                                                              
 ```
 
 Resources
