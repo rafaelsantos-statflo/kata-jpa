@@ -44,21 +44,29 @@ Entity Diagram
                                              │{OneToMany}
                                              │
                                              │
-┌─|CATEGORY|────┐              ┌─|VARIANT|───┴─┐              ┌─|LOCATION|────┐
-│name           │ {ManyToMany} │id             │ {ManyToMany} │id             │
-│               ├──────────────┤               ├──────────────┤name           │
-└───────────────┘              └─────────────┬─┘              └─────────────┬─┘
-                                             │{OneToMany}                   │{OneToOne}
-                                             │                              │
-                                             │                              │
-                               ┌─|ATTRIBUTE|─┴─┐              ┌─|ADDRESS|───┴─┐
-                               │key            │              │id             │
-                               │value          │              │lineOne        │
-                               └───────────────┘              │lineTwo        │
-                                                              │postalCode     │
-                                                              │country        │
-                                                              │city           │
-                                                              └───────────────┘                                                              
+┌─|CATEGORY|────┐              ┌─|VARIANT|───┴─┐
+│id?            │ {ManyToMany} │id             │{ ? }       ┌─|IVENTORY|────┐
+│name           ├──────────────┤name           ├────────────┤id?            │
+└───────────────┘              └─────────────┬─┘            │quantity       │
+                                             │{OneToMany}   └─────────────┬─┘
+                                             │                            │{ ? }
+                                             │                            │
+Where to add a SKU?            ┌─|ATTRIBUTE|─┴─┐                          │
+                               │key            │            ┌─|LOCATION|──┴─┐
+                               │value          │            │id             │
+                               └───────────────┘            │name           │
+                                                            └─────────────┬─┘
+                                                                          │{OneToOne}
+                                                                          │
+                                                                          │
+                                                            ┌─|ADDRESS|───┴─┐
+                                                            │id             │
+                                                            │lineOne        │
+                                                            │lineTwo        │
+                                                            │postalCode     │
+                                                            │country        │
+                                                            │city           │
+                                                            └───────────────┘
 ```
 
 Resources
