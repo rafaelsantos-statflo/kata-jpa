@@ -1,0 +1,21 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.runtimes": [{
+        "name": "JavaSE-19",
+        "default": true,
+        "path": "/home/rafa/.sdkman/candidates/java/19-zulu/"
+    }
+],
+"sqltools.connections": [
+    {
+        "previewLimit": 50,
+        "server": "localhost",
+        "port": 5432,
+        "driver": "PostgreSQL",
+        "name": "kata-jpa",
+        "database": "kata",
+        "username": "admin",
+        "password": "pass"
+    }
+]
+}
