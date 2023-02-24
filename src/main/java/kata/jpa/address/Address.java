@@ -1,5 +1,6 @@
 package kata.jpa.address;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -11,4 +12,8 @@ public class Address {
     @Id
     @GeneratedValue
     private Integer id;
+
+    @Column(nullable = false)
+    private String lineOne;
+
 }
