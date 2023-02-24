@@ -16,4 +16,7 @@ public class Address {
     @Column(nullable = false)
     private String lineOne;
 
+    private String lineTwo;
+
 }
+

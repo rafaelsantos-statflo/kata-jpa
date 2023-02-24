@@ -41,5 +41,26 @@ class AddressTest {
 		assertThrows(DataIntegrityViolationException.class, () -> addressRepository.save(address));
 	}
 
+	@Test
+	void saveAddressWithLineTwo(){
+		val address = new Address();
+		address.setLineOne("123 ABC Avenue");
+		address.setLineTwo("Unit 2");
+		addressRepository.save(address);
+		val actual= addressRepository.findById(address.getId());
+
+		assertEquals(actual.get(), address);
+	}
+
+	@Test
+	void findByLineOne(){
+		val address = new Address();
+		val lineOne = "123 ABC Avenue";
+		address.setLineOne(lineOne);
+		addressRepository.save(address);
+		val actual = addressRepository.findByLineOne(lineOne);
+		assertTrue(actual.contains(address));
+	}
+
 
 }
