@@ -18,6 +18,8 @@ public class LocationRepositoryTest {
 
     @Autowired
     private LocationRepository locationRepository;
+    @Autowired
+    private AddressRepository addressRepository;
 
     @Test
     void save_Given_NewAddress_Then_Success() {
@@ -26,6 +28,22 @@ public class LocationRepositoryTest {
         locationRepository.save(location);
         val actual =  locationRepository.findById(location.getId());
         assertEquals(actual.get(), location);
+    }
+
+
+    @Test
+    void save_With_NewAddress_Then_Success(){
+        val location = new Location();
+        location.setName("Mall");
+        val address = new Address();
+        address.setLineOne("123 Main St");
+        address.setCountry(Country.Canada);
+        addressRepository.save(address);
+        locationRepository.save(location);
+
+        val actual = locationRepository.findById(location.getId());
+        assertEquals(actual.get(),location);
+
     }
 
 }
