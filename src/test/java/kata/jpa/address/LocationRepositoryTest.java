@@ -38,7 +38,10 @@ public class LocationRepositoryTest {
         val address = new Address();
         address.setLineOne("123 Main St");
         address.setCountry(Country.Canada);
-        addressRepository.save(address);
+
+        location.setAddress(address);
+
+//        addressRepository.save(address);
         locationRepository.save(location);
 
         val actual = locationRepository.findById(location.getId());
