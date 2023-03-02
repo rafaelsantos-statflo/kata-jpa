@@ -2,6 +2,8 @@ package kata.jpa.address;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -18,5 +20,8 @@ public class Address {
 
     private String lineTwo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Country country;
 }
 
