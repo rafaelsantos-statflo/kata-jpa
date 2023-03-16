@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class LocationRepositoryTest {
@@ -46,6 +47,23 @@ public class LocationRepositoryTest {
 
         val actual = locationRepository.findById(location.getId());
         assertEquals(actual.get(),location);
+
+    }
+
+    @Test
+    void get_Location_By_Address_Country(){
+        val address = new Address();
+        address.setLineOne("123 Main St");
+        address.setCountry(Country.Canada);
+
+        val location = new Location();
+        location.setName("Mall");
+        location.setAddress(address);
+
+        locationRepository.save(location);
+
+        val actual = locationRepository.findByAddress_Country(address.getCountry());
+        assertTrue(actual.contains(location));
 
     }
 
