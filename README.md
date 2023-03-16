@@ -79,6 +79,28 @@ Where to add a SKU?            ┌─|ATTRIBUTE|─┴─┐                    
                                                             └───────────────┘
 ```
 
+Create tables
+
+    create table address (
+       id integer not null,
+        country varchar(255) not null,
+        line_one varchar(255) not null,
+        line_two varchar(255),
+        primary key (id)
+    )
+
+    create table location (
+       id integer not null,
+        name varchar(255) not null,
+        address_id integer,
+        primary key (id)
+    )
+
+    alter table if exists location 
+       add constraint FKt8psi9b5mkkfc0r9fgptngwhg 
+       foreign key (address_id) 
+       references address
+
 Resources
 ---------
 * [Jakarta Persistence Specification](https://jakarta.ee/specifications/persistence/3.1/jakarta-persistence-spec-3.1.html)

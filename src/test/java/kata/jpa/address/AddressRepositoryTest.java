@@ -1,5 +1,7 @@
 package kata.jpa.address;
 
+import kata.jpa.location.Location;
+import kata.jpa.location.LocationRepository;
 import lombok.val;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ class AddressRepositoryTest {
 	private static final String LINE_ONE = "123 ABC Avenue";
 	private static final String LINE_TWO = "Unit 2";
 	private static final Country country = Country.Canada;
+
+	@Autowired
+	private LocationRepository locationRepository;
 
 	@Autowired
 	private AddressRepository addressRepository;
@@ -82,6 +87,39 @@ class AddressRepositoryTest {
 		address.setCountry(Country.Canada);
 		addressRepository.save(address);
 		assertEquals(addressRepository.findById(address.getId()).get(), address);
+	}
+
+	@Test
+	void test_findByLocationWhereNameStartsWith(){
+		val addressA = new Address();
+		addressA.setLineOne("123 Main St");
+		addressA.setCountry(Country.Canada);
+		val addressB = new Address();
+		addressB.setLineOne("123 Main St");
+		addressB.setCountry(Country.Canada);
+		val addressC = new Address();
+		addressC.setLineOne("123 Main St");
+		addressC.setCountry(Country.Canada);
+
+		val locationA = new Location();
+		locationA.setName("Apple Orchard");
+		locationA.setAddress(addressA);
+		val locationB = new Location();
+		locationB.setName("Banana Store");
+		locationB.setAddress(addressB);
+		val locationC = new Location();
+		locationC.setName("Cherry Store");
+		locationC.setAddress(addressC);
+
+		locationRepository.save(locationA);
+		locationRepository.save(locationB);
+		locationRepository.save(locationC);
+
+		val actual = addressRepository.findByLocationWhereNameStartsWith("Apple Orchard");
+		assertTrue(actual.contains(addressA));
+		assertFalse(actual.contains(addressB));
+		assertFalse(actual.contains(addressC));
+
 	}
 
 }
