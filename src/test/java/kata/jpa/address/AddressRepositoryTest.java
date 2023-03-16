@@ -92,13 +92,13 @@ class AddressRepositoryTest {
 	@Test
 	void test_findByLocationWhereNameStartsWith(){
 		val addressA = new Address();
-		addressA.setLineOne("123 Main St");
+		addressA.setLineOne("123 Main St A");
 		addressA.setCountry(Country.Canada);
 		val addressB = new Address();
-		addressB.setLineOne("123 Main St");
+		addressB.setLineOne("123 Main St B");
 		addressB.setCountry(Country.Canada);
 		val addressC = new Address();
-		addressC.setLineOne("123 Main St");
+		addressC.setLineOne("123 Main St C ");
 		addressC.setCountry(Country.Canada);
 
 		val locationA = new Location();
